@@ -21,6 +21,13 @@ public class Student : BaseEntity
 	public Religion Religion { get; set; }
 	public string Staatsbuerger { get; set; }
 	public string Klasse { get; set; }
-	
+	public List<Message> Messages { get; set; } = [];
+
+	public Message SendMessage(Student receiver, string text)
+	{
+		var message = new Message(text, this, receiver);
+		Messages.Add(message);
+		return message;
+	}
 	protected Student() {}
 }
