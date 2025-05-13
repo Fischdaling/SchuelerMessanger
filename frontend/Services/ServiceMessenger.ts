@@ -1,14 +1,15 @@
 import {Student} from "./Student.cs";
 
-export async function GetAllStudents() : Promise<String>  {
+export async function GetMessageByStudentId(id: string) : Promise<String>  {
     const headers: Headers = new Headers();
     headers.append("Accept", "application/json");
     headers.append("Content-Type", "application/json");
     headers.set("X-Custom-Headers", "CustomValue");
 
-    const request : RequestInfo = new Request("http://localhost:5202/api/students", {
+    const request : RequestInfo = new Request(`"http://localhost:5202/api/students/${id}"`, {
         method: "GET",
-        headers: headers
+        headers: headers,
+        body: JSON.stringify({id: id})
     });
 
     try {
@@ -19,9 +20,9 @@ export async function GetAllStudents() : Promise<String>  {
         }
 
         const data = await response.json();
-        return data as Student[];
+        return data as string;
     } catch (error) {
-        console.error("Error fetching students:", error);
+        console.error("Error fetching messages:", error);
         throw error;
     }
 
