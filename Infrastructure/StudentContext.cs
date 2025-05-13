@@ -1,14 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 
 namespace SchuelerChatBackendProject.Infrastructure;
 
-public class StudentContext (DbContextOptions<StudentContext> options) : DbContext(options)
+public class StudentContext
 {
-	public DbSet<Student> Students { get; set; }
-	public DbSet<Message> Messages { get; set; }
-
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	private readonly IMongoDatabase _database;
+	
+	public StudentContext(string connectionString, string databaseName)
 	{
-		modelBuilder.Entity<Student>().OwnsOne<Address>(s=>s.Address);
+		var client = new MongoClient(connectionString);
+		_database = client.GetDatabase(databaseName);
 	}
+
+	public IMongoCollection<Student> Students => _database.GetCollection<Student>("Students");
+	public IMongoCollection<Message> Messages => _database.GetCollection<Message>("Messages");
 }

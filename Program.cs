@@ -1,21 +1,27 @@
+using Microsoft.Extensions.Options;
+using SchuelerChatBackendProject.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Bind MongoDbSettings from config
+builder.Services.Configure<MongoDbSettings>(
+	builder.Configuration.GetSection("MongoDbSettings"));
 
+builder.Services.AddSingleton(sp =>
+{
+	var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+	return new StudentContext(settings.ConnectionString, settings.DatabaseName);
+});
+
+// Add Controllers etc.
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-	app.MapOpenApi();
-}
-
+app.UseHttpsRedirection();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
