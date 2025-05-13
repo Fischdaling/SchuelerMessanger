@@ -1,0 +1,24 @@
+﻿namespace SchuelerChatBackendProject;
+
+public enum Klasse
+{
+    _1AAIF,
+    _1ABIF,
+    _1BBIF,
+    _1AHBGM,
+    _1AHIF,
+    _1BAIF,
+    _1DHIF,
+    _1BHBGM,
+    _4AHBGM,
+    _4AHIF,
+    _1BHIF,
+    _1CBIF,
+    _1CHIF,
+    _4EHIF,
+    _5AHBGM,
+    _5AHIF,
+    _5BHIF,
+    _3AFID,
+    _1EHIF
+}
