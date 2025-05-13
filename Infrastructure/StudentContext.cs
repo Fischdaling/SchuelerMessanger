@@ -6,4 +6,9 @@ public class StudentContext (DbContextOptions<StudentContext> options) : DbConte
 {
 	public DbSet<Student> Students { get; set; }
 	public DbSet<Message> Messages { get; set; }
+
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		modelBuilder.Entity<Student>().OwnsOne<Address>(s=>s.Address);
+	}
 }
