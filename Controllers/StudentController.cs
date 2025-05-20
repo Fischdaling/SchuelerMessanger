@@ -8,7 +8,7 @@ namespace SchuelerChatBackendProject.Controllers;
 
 [ApiController]
 [Route("api/students")]
-public class StudentController(StudentContext db) : ControllerBase
+public class StudentController(StudentContext db, Neo4jService neo) : ControllerBase
 {
 	[HttpGet]
 	public IActionResult GetAllStudends()
@@ -70,4 +70,11 @@ public class StudentController(StudentContext db) : ControllerBase
 		return Ok(message);
 	}
 	
+	[HttpGet("/countHops")]
+	public async Task<IActionResult> GetFriendsOfFriendsCount(Guid user1Id, Guid user2Id)
+	{
+		var count = await neo.GetShortestFriendPathLengthAsync(user1Id,user2Id);
+		return Ok(new { count });
+	}
+
 }

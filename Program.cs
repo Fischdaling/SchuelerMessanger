@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Options;
+using SchuelerChatBackendProject.Controllers;
 using SchuelerChatBackendProject.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,14 @@ builder.Services.AddSingleton(sp =>
 	var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
 	return new StudentContext(settings.ConnectionString, settings.DatabaseName);
 });
+
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<Neo4jService>();
+
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
