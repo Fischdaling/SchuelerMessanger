@@ -1,6 +1,5 @@
 @SchuelerChatBackendProject_HostAddress = http://localhost:5202
 
-GET {{SchuelerChatBackendProject_HostAddress}}/weatherforecast/
-Accept: application/json
+
 
 ###

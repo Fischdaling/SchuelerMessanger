@@ -13,6 +13,6 @@ public class StudentContext
 		_database = client.GetDatabase(databaseName);
 	}
 
-	public IMongoCollection<Student> Students => _database.GetCollection<Student>("Students");
+	public IMongoCollection<Student> Students => _database.GetCollection<Student>("Schueler");
 	public IMongoCollection<Message> Messages => _database.GetCollection<Message>("Messages");
 }

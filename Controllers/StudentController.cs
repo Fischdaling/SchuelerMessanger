@@ -31,18 +31,6 @@ public class StudentController(StudentContext db, Neo4jService neo) : Controller
 	}
 	
 	
-	[HttpDelete("{id:guid}")]
-	public IActionResult DeleteCustomer(Guid id)
-	{
-		if (!ObjectId.TryParse(id.ToString(), out _))
-			return BadRequest(new { Message = "Invalid ID format" });
-
-		var result =  db.Students.DeleteOneAsync(s => s.Id == id);
-		if (result.Result.DeletedCount == 0)
-			return NotFound(new { Message = $"Student with id {id} not found" });
-
-		return NoContent();
-	}
 
 	[HttpPost]
 	public IActionResult SendMessage(SendMessageDto dto)

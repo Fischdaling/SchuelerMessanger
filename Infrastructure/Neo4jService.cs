@@ -9,8 +9,8 @@ public class Neo4jService : IAsyncDisposable
 	public Neo4jService(IConfiguration config)
 	{
 		_driver = GraphDatabase.Driver(
-			config["Neo4j:Uri"],
-			AuthTokens.Basic(config["Neo4j:User"], config["Neo4j:Password"]));
+			"bolt://localhost:7687",
+			AuthTokens.Basic("neo4j", "schueler"));
 	}
 
 	public async Task LogRelationshipAsync(Guid sender, Guid receiver)
