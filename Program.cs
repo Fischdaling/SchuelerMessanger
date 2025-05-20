@@ -8,13 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.Configure<MongoDbSettings>(
-	builder.Configuration.GetSection("MongoDbSettings"));
 
 builder.Services.AddSingleton(sp =>
 {
-	var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-	return new StudentContext(settings.ConnectionString, settings.DatabaseName);
+	return new StudentContext("mongodb://localhost:27017","schueler");
 });
 
 builder.Services.AddSignalR();
