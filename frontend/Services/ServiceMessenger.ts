@@ -1,4 +1,4 @@
-import {Student} from "./Student.cs";
+
 
 export async function GetMessageByStudentId(id: string) : Promise<String>  {
     const headers: Headers = new Headers();
