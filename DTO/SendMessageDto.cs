@@ -1,3 +1,5 @@
-﻿namespace SchuelerChatBackendProject.DTO;
+﻿using MongoDB.Bson;
 
-public record SendMessageDto(string MessageText, Guid SenderId, Guid ReceiverId);
+namespace SchuelerChatBackendProject.DTO;
+
+public record SendMessageDto(string MessageText, ObjectId SenderId, ObjectId ReceiverId);

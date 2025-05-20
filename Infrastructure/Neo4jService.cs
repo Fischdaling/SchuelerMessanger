@@ -13,7 +13,7 @@ public class Neo4jService : IAsyncDisposable
 			AuthTokens.Basic("neo4j", "schueler"));
 	}
 
-	public async Task LogRelationshipAsync(Guid sender, Guid receiver)
+	public async Task LogRelationshipAsync(string sender, string receiver)
 	{
 		var session = _driver.AsyncSession();
 		try
@@ -32,7 +32,7 @@ public class Neo4jService : IAsyncDisposable
 		}
 	}
 	
-	public async Task<int?> GetShortestFriendPathLengthAsync(Guid userA, Guid userB)
+	public async Task<int?> GetShortestFriendPathLengthAsync(string userA, string userB)
 	{
 		var session = _driver.AsyncSession();
 		try

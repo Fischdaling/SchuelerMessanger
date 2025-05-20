@@ -13,9 +13,8 @@ public class Message : BaseEntity
 	public Student Sender { get; set; }
 	public Student Receiver { get; set; }
 
-	protected Message(Student sender, Student receiver)
+	protected Message()
 	{
-		Sender = sender;
-		Receiver = receiver;
 	}
+
 }

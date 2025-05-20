@@ -14,5 +14,8 @@ public class StudentContext
 	}
 
 	public IMongoCollection<Student> Students => _database.GetCollection<Student>("Schueler");
-	public IMongoCollection<Message> Messages => _database.GetCollection<Message>("Messages");
+	public IMongoCollection<Message> Messages => _database.GetCollection<Message>("Schueler");
+	
+	
+	
 }
