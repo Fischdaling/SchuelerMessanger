@@ -35,12 +35,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-async function fetchShortestPath(userA: string, userB: string): Promise<number | null> {
-    const res = await fetch(`/api/users/shortest-path?from=${userA}&to=${userB}`);
-    if (!res.ok) {
-        throw new Error(`Failed to fetch shortest path`);
-    }
-    const data = await res.json();
-    return data.hops ?? null;
-}
+
 

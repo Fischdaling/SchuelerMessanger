@@ -35,4 +35,5 @@ export async function GetAllStudents() : Promise<Student[]>  {
         const data = await res.json();
         return data.hops ?? null;
     }
+
 }
