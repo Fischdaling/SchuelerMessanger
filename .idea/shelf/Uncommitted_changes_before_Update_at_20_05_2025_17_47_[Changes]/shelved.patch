@@ -1,0 +1,16 @@
+Index: frontend/Services/ServiceStudent.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {Student} from \"./Student.cs\";\r\n\r\nexport async function GetAllStudents() : Promise<Student[]>  {\r\n    const headers: Headers = new Headers();\r\n    headers.append(\"Accept\", \"application/json\");\r\n    headers.append(\"Content-Type\", \"application/json\");\r\n    headers.set(\"X-Custom-Headers\", \"CustomValue\");\r\n\r\n    const request : RequestInfo = new Request(\"http://localhost:5202/api/students\", {\r\n        method: \"GET\",\r\n        headers: headers\r\n    });\r\n\r\n    try {\r\n        const response = await fetch(request);\r\n\r\n        if (!response.ok) {\r\n            throw new Error(`HTTP error! status: ${response.status}`);\r\n        }\r\n\r\n        const data = await response.json();\r\n        return data as Student[];\r\n    } catch (error) {\r\n        console.error(\"Error fetching students:\", error);\r\n        throw error;\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/Services/ServiceStudent.ts b/frontend/Services/ServiceStudent.ts
+--- a/frontend/Services/ServiceStudent.ts	(revision e89d2fbdbf4cd66f592a4dc89de28e16079da6dd)
++++ b/frontend/Services/ServiceStudent.ts	(date 1747756050904)
+@@ -1,4 +1,4 @@
+-import {Student} from "./Student.cs";
++import {Student} from "../Model/Student.cs";
+ 
+ export async function GetAllStudents() : Promise<Student[]>  {
+     const headers: Headers = new Headers();
