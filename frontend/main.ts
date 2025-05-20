@@ -20,15 +20,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateDropdown('user', users);
         populateDropdown('person', users);
 
-        // Optional: disable same user selection between dropdowns
         const userSelect = document.getElementById('user') as HTMLSelectElement;
         const personSelect = document.getElementById('person') as HTMLSelectElement;
 
         userSelect.addEventListener('change', () => {
             const selectedUser = userSelect.value;
-            [...personSelect.options].forEach(opt => {
-                opt.disabled = opt.value === selectedUser;
-            });
+            for (var i = 0; i < personSelect.options.length; i++){
+                personSelect.options[i].disabled = personSelect.options[i].value === selectedUser;
+            }
         });
     } catch (error) {
         console.error('Error loading users:', error);
