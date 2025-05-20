@@ -1,4 +1,5 @@
-import {Student} from "./Student.cs";
+import {Student} from "../model/Student";
+
 
 export async function GetAllStudents() : Promise<Student[]>  {
     const headers: Headers = new Headers();
@@ -23,6 +24,16 @@ export async function GetAllStudents() : Promise<Student[]>  {
     } catch (error) {
         console.error("Error fetching students:", error);
         throw error;
+    }
+
+
+    async function fetchShortestPath(userA: string, userB: string): Promise<number | null> {
+        const res = await fetch(`/api/users/shortest-path?from=${userA}&to=${userB}`);
+        if (!res.ok) {
+            throw new Error(`Failed to fetch shortest path`);
+        }
+        const data = await res.json();
+        return data.hops ?? null;
     }
 
 }
